@@ -1,10 +1,28 @@
 package ru.netology;
 
 public class Radio {
-
+    private int numbersOfStation = 10;
+    private int maxIdStation = 9;
+    private int minIdStation = 0;
     private int idStation;
-    private int currentVolume;
+    private int maxVolume = 100;
+    private int minVolume = 0;
+    private int currentVolume = minVolume;
 
+    public Radio(int numbersOfStation) {
+        this.numbersOfStation = numbersOfStation;
+        this.maxIdStation = numbersOfStation - 1;
+    }
+
+    public Radio() {
+    }
+
+    public int getMaxIdStation() {
+        return maxIdStation;
+    }
+    public int getMinIdStation() {
+        return minIdStation;
+    }
     public int getIdStation() {
         return idStation;
     }
@@ -14,20 +32,20 @@ public class Radio {
     }
 
     public void setIdStation(int newIdStation) {
-        if (newIdStation < 0) {
+        if (newIdStation < minIdStation) {
             return;
         }
-        if (newIdStation > 9) {
+        if (newIdStation > maxIdStation) {
             return;
         }
         idStation = newIdStation;
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 10) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
         currentVolume = newCurrentVolume;
@@ -35,26 +53,26 @@ public class Radio {
 
     public void next() {
         idStation = idStation + 1;
-        if (idStation > 9) {
-            idStation = 0;
+        if (idStation > maxIdStation) {
+            idStation = minIdStation;
         }
     }
 
     public void prev() {
         idStation = idStation - 1;
-        if (idStation < 0) {
-            idStation = 9;
+        if (idStation < minIdStation) {
+            idStation = maxIdStation;
         }
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
     }
 
     public void reduceVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
     }
